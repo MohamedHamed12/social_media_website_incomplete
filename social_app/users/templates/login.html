@@ -1,0 +1,15 @@
+<form method="post">
+    {% csrf_token %}
+    {{ form }}
+    
+    <button type="submit">Log In</button>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {{ form.errors }}
+  </form>
+  <a href="{% url 'reset_password' %}">forgest password </a>
