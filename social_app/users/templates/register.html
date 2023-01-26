@@ -1,9 +1,7 @@
+<!-- {% block title %}Register{% endblock %}
+{% block content %} -->
 
-{% block title %}Register{% endblock %}
-{% block content %}
-
-
-
+<!-- 
     <form action="" method="POST">
         {% csrf_token %}
       
@@ -25,4 +23,29 @@
 {% endif %}
 {{ form.errors }}
    
-{% endblock %}
+{% endblock %} -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="register.css" />
+    <title>Register</title>
+  </head>
+  <body>
+    <div class="form">
+      <form action="" method="POST">
+        <h2>Create a new account</h2>
+        <input type="email" placeholder="Your Email" />
+        <input type="password" placeholder="password" />
+        <input type="password" placeholder="confirm password" />
+        <input type="submit" value="register now" class="registerButton" />
+      </form>
+      <p>Already have an account?</p>
+      <button>
+        <a href="login.html">Log in</a>
+      </button>
+    </div>
+  </body>
+</html>

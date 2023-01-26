@@ -1,4 +1,4 @@
-<form method="post">
+<!-- <form method="post">
     {% csrf_token %}
     {{ form }}
     
@@ -12,4 +12,34 @@
     {% endif %}
     {{ form.errors }}
   </form>
-  <a href="{% url 'reset_password' %}">forgest password </a>
+  <a href="{% url 'reset_password' %}">forgest password </a> -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="login.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700;800&family=Roboto:wght@100;300;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <title>Login</title>
+  </head>
+  <body>
+    <form action="" method="POST">
+      <div class="input">
+        <span>Your Email</span>
+        <input type="email" placeholder="Your email" class="emailInput" />
+      </div>
+      <div class="input">
+        <span>Your Password</span>
+        <input type="password" placeholder="password" />
+      </div>
+      <input type="submit" class="button" value="Log in" />
+    </form>
+  </body>
+</html>

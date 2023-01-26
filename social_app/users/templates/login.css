@@ -1,0 +1,53 @@
+* {
+  outline: none;
+}
+
+body {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  font-family: "Cairo", sans-serif;
+  background-color: #ececec;
+}
+
+form {
+  margin: 50% auto 0;
+  padding: 2rem;
+  background-color: aqua;
+  position: relative;
+  padding-bottom: 4rem;
+}
+
+form input {
+  width: 12.5rem;
+  padding: 0.5rem;
+  background-color: white;
+  border: none;
+  margin-left: 1rem;
+  min-width: 6.25rem;
+  margin: 1rem;
+}
+form input:first-of-type {
+  font-size: 0.9rem;
+}
+form .emailInput {
+  margin-left: 2.85rem;
+}
+form .input {
+  display: flex;
+  align-items: center;
+}
+
+form .button {
+  position: absolute;
+  margin: 0;
+  left: 50%;
+  transform: translateX;
+  transform: translateX(-50%);
+  background-color: blueviolet;
+  color: white;
+  cursor: pointer;
+  margin-top: 0.75rem;
+  width: fit-content;
+  border-radius: 7px;
+}
