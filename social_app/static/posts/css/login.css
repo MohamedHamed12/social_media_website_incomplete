@@ -51,3 +51,10 @@ form .button {
   width: fit-content;
   border-radius: 7px;
 }
+.forget {
+  text-align: end;
+  margin-top: 1rem;
+}
+.forget a:focus {
+  color: blue;
+}

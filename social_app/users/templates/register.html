@@ -30,7 +30,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="register.css" />
+    <link rel="stylesheet" href="../../static/posts/css/register.css" />
     <title>Register</title>
   </head>
   <body>
@@ -38,8 +38,13 @@
       <form action="" method="POST">
         <h2>Create a new account</h2>
         <input type="email" placeholder="Your Email" />
-        <input type="password" placeholder="password" />
-        <input type="password" placeholder="confirm password" />
+        <input type="password" placeholder="password" class="password" />
+        <input
+          type="password"
+          placeholder="confirm password"
+          class="confirmPassword"
+        />
+        <div class="error"></div>
         <input type="submit" value="register now" class="registerButton" />
       </form>
       <p>Already have an account?</p>
@@ -47,5 +52,6 @@
         <a href="login.html">Log in</a>
       </button>
     </div>
+    <script src="js/script.js"></script>
   </body>
 </html>

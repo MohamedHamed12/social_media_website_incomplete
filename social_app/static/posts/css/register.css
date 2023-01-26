@@ -11,7 +11,7 @@ body {
 }
 .form {
   background-color: aqua;
-  height: 30rem;
+  height: 34rem;
   top: 50%;
   position: absolute;
   top: 50%;
@@ -72,10 +72,9 @@ button a {
 
 .registerButton {
   /* position: absolute; */
-  margin: 0;
-  left: 50%;
-  transform: translateX;
-  transform: translateX(-50%);
+  /* left: 50%; */
+  /* transform: translateX; */
+  /* transform: translateX(-50%); */
   background-color: blueviolet;
   color: white;
   cursor: pointer;
@@ -86,4 +85,13 @@ button a {
   outline: none;
   padding: 0.5rem 1rem;
   display: flex;
+  justify-content: center;
+  margin: 0.75rem auto 0;
+}
+.error {
+  color: rgba(254, 6, 6, 0.815);
+  font-size: 0.875rem;
+  display: block;
+  margin: 0 auto;
+  font-weight: bold;
 }
