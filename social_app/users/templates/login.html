@@ -1,26 +1,11 @@
-<!-- <form method="post">
-    {% csrf_token %}
-    {{ form }}
-    
-    <button type="submit">Log In</button>
-    {% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-        <li {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-        {% endfor %}
-    </ul>
-    {% endif %}
-    {{ form.errors }}
-  </form>
-  <a href="{% url 'reset_password' %}">forgest password </a> -->
-
+{% load static %}  
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../../static/posts/css/login.css" />
+    <link rel="stylesheet" href="{% static 'users/css/login.css' %}" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -28,22 +13,29 @@
       rel="stylesheet"
     />
     <title>Login</title>
+    
   </head>
   <body>
-    <form action="" method="POST">
-      <div class="input">
+    <div>
+
+     <form method="post" action="" >
+      {% csrf_token %} 
+
+        <div class="input">
         <span>Your Email</span>
-        <input type="email" placeholder="Your email" class="emailInput" />
+        <input type="email" name="email" />
       </div>
       <div class="input">
         <span>Your Password</span>
-        <input type="password" placeholder="password" />
-      </div>
-      <div class="error"></div>
-      <div class="forget">
-        <a href="#">Forget password</a>
-      </div>
-      <input type="submit" class="button" value="Log in" />
-    </form>
+        <input type="password" class="form-control" name="password1" />
+      </div> 
+      <button type="submit" >login</button>
+      <br>
+      <a href="{% url 'registerUrl' %}">register</a>
+        <br>
+      <a href="{% url 'reset_passwordUrl' %}">reset_passwordUrl</a>
+    </form> 
+  </div>
   </body>
-</html>
+  
+</html> 

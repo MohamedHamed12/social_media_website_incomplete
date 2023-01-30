@@ -1,6 +1,4 @@
-<!-- <h1>index</h1>
-<a href="{% url 'userlogout' %}">logout</a> 
-{% comment %} <a href="{% url 'registerFun' %}">register</a> {% endcomment %} -->
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -10,7 +8,8 @@
     <title>Home</title>
   </head>
   <body>
-    <a href="login.html">Go to login page</a>
-    <a href="register.html">Go to register page</a>
+    <a href="{% url 'loginUrl' %}">Go to login page</a>
+    <a href="{% url 'registerUrl' %}">Go to register page</a>
+    
   </body>
 </html>

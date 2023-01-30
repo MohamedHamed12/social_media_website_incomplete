@@ -38,8 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'blog',
-    'users'
+    'users',
   
 ]
 
@@ -146,3 +145,5 @@ EMAIL_HOST_USER='mohamoudh477@gmail.com'
 EMAIL_HOST_PASSWORD='rqtbmshjwincccxo'
 # EMAIL_HOST_PASSWORD='mqjbrmrnzelvpyys'
 # end reset password
+AUTH_USER_MODEL = 'users.CustomUser'
+# AUTHENTICATION_BACKENDS = ["users.backends.CustomUserModelBackend"]

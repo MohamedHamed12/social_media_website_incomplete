@@ -1,0 +1,15 @@
+<form action="" method="POST" enctype="multipart/form-data"> 
+    {% csrf_token %}
+    {{u_form.as_p}}
+    {{p_form.as_p}}
+    <div>
+        <img src="{{p_form.instance.image.url}}" alt="" width="200">
+
+    </div>
+
+      
+
+ 
+        <button class="btn btn-outline-info" type="submit">save</button>
+  
+</form>

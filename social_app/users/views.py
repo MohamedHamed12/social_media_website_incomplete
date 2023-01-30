@@ -1,13 +1,14 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
-from .forms import Registertion_form
+from .forms import Registertion_form,UserUpdateForm ,ProfileUpdateForm ,login_form
 from django.shortcuts import redirect
 from django.contrib import messages 
 from django.contrib.auth import  authenticate
 from django.contrib.auth import logout as authlogout
 from django.contrib.auth import login  as authlogin
-from django.contrib.auth.forms import AuthenticationForm ,PasswordResetForm
+from django.contrib.auth.forms import AuthenticationForm ,PasswordResetForm 
 from django.contrib.auth.models import User
+from .managers import CustomUserManager
 #  password reset 
 # from django.db.models.query_utils import Q
 # from django.utils.http import urlsafe_base64_encode
@@ -16,35 +17,72 @@ from django.contrib.auth.models import User
 # from django.template.loader import render_to_string
 # from django.core.mail import send_mail, BadHeaderError
 # from django.http import HttpResponse
+from django.contrib.auth.decorators import login_required
+import json
+
+from django.contrib.auth import get_user_model
+User = get_user_model()
 
 
+@login_required
+def profile(req):
+    
+    if req.method == 'POST':
+        
+        u_form=UserUpdateForm(req.POST,instance=req.user)
+        p_form = ProfileUpdateForm(req.POST, req.FILES,instance=req.user.profile)
+       
+        if u_form.is_valid() and p_form.is_valid():
+            u_form.save()
+            p_form.save()
+            print('2done')
+            
+            return redirect('mainUrl')
+    else:
+        u_form=UserUpdateForm(instance=req.user)
+        p_form = ProfileUpdateForm(instance=req.user.profile)
+        con={'u_form':u_form,'p_form':p_form}
+        return render(req, 'main/user/profile.html', con)
 
+
+def main(req):
+    return  render(req,'main.html', {})
 def findex(req):
     return render(req,'index.html')
 def register(req):
-    form=Registertion_form()
     if req.method == 'POST':
-        form=Registertion_form(req.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('userlogin')
-    return render(req,'register.html', {'form':form})
+        first_name=req.POST.get('first_name')
+        last_name=req.POST.get('last_name')
+        email=req.POST.get('email')
+        password1=req.POST.get('password1')
+        password2=req.POST.get('password2')
+        
+        if User.objects.filter(email=email).exists():
+           return redirect('registerUrl')
+        user = User.objects.create_user(email=email, password=password1,first_name=first_name,last_name=last_name)
+        
+        return redirect('loginUrl')
+  
+    return render(req,'register.html')
+
      
 def userlogin(req):
-     if req.user.is_authenticated:return redirect('index')
-     form = AuthenticationForm()
+  
      if req.method == 'POST':
-        username = req.POST['username']
-        password = req.POST['password']
-        user = authenticate(req,username=username,password=password) 
+      
+        email=req.POST.get('email')
+        password=req.POST.get('password1')
+        print(email, password)
+        user = authenticate(req,email=email,password=password) 
         if user is not None:
                 authlogin(req,user)
-                return redirect('index')
-        else:
-                messages.error(req,'not valid')
+                return redirect('mainUrl')
+        messages.error(req,'not valid')
+     
    
-     con={'form':form}
+     con={}
      return render(req,"login.html",con)
+ 
 
 
 
@@ -58,31 +96,3 @@ def password_reset(req):
     user = req.user
     form = PasswordResetForm(user)
     return render(req, 'main/password/pass_reset.html', {'form': form})
-
-# def password_reset_req(req):
-# 	if req.method == "POST":
-# 		password_reset_form = PasswordResetForm(req.POST)
-# 		if password_reset_form.is_valid():
-# 			data = password_reset_form.cleaned_data['email']
-# 			associated_users = User.objects.filter(Q(email=data))
-# 			if associated_users.exists():
-# 				for user in associated_users:
-# 					subject = "Password Reset Requested"
-# 					email_template_name = "main/password/password_reset_email.txt"
-# 					c = {
-# 					"email":user.email,
-# 					'domain':'127.0.0.1:8000',
-# 					'site_name': 'Website',
-# 					"uid": urlsafe_base64_encode(force_bytes(user.pk)),
-# 					"user": user,
-# 					'token': default_token_generator.make_token(user),
-# 					'protocol': 'http',
-# 					}
-# 					email = render_to_string(email_template_name, c)
-# 					try:
-# 						send_mail(subject, email, 'admin@example.com' , [user.email], fail_silently=False)
-# 					except BadHeaderError:
-# 						return HttpResponse('Invalid header found.')
-# 					return redirect ("/password_reset/done/")
-# 	password_reset_form = PasswordResetForm()
-# 	return render(req, template_name="main/password/pass_reset.html", context={"password_reset_form":password_reset_form})
